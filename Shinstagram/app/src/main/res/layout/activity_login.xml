@@ -7,10 +7,10 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_above="@+id/signin_layout"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/signin_layout"
+        android:layout_alignParentTop="true"
         android:src="@drawable/logo_title">
 
     </ImageView>
@@ -22,43 +22,60 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email"/>
-        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:text="@string/signin_email"
-            android:theme="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="35dp"/>
-        <Button
-            android:text="@string/signin_facebook"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/btn_signin_facebook"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"/>
-        <Button
-            android:text="@string/signin_google"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/btn_signin_google"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_marginBottom="35dp"
+            android:text="@string/signin_email"
+            android:theme="@style/ButtonStyle" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="80dp"/>
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/btn_signin_facebook"
+            android:text="@string/signin_facebook"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="80dp"
+
+            android:background="@drawable/btn_signin_google"
+            android:text="@string/signin_google"
+            android:textColor="@color/colorWhite" />
     </LinearLayout>
 
 
