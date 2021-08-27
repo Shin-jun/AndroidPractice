@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "488551567059",
+    "project_id": "shinstagram-e868e",
+    "storage_bucket": "shinstagram-e868e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488551567059:android:f8671acc14ea0fa5d64e26",
+        "android_client_info": {
+          "package_name": "com.example.shinstagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488551567059-2ggh66f7v031mv9crfo1b9hl7u27urc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmhBw_ctc98nOmB3KEHFY4LduXywTJRyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488551567059-2ggh66f7v031mv9crfo1b9hl7u27urc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
