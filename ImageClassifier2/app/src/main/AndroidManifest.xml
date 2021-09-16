@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shin.imageclassifier">
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
+    package="com.example.imageclassifier">
 
     <application
         android:allowBackup="true"
@@ -14,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImageClassifier">
         <activity
-            android:name=".Camera"
-            android:exported="true" />
-        <activity
-            android:name=".gallery"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -28,19 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.shin.imageclassifier"
-            android:exorted="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
-        </provider>
-
     </application>
-
-
 
 </manifest>

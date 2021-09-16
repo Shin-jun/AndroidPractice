@@ -18,5 +18,11 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, gallery.class);
             startActivity(i);
         });
+
+        Button cameraBtn = findViewById(R.id.cameraBtn);
+        cameraBtn.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, Camera.class);
+            startActivity(i);
+        });
     }
 }
