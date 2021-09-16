@@ -1,9 +1,19 @@
 package com.shin.imageclassifier;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.util.Pair;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +21,7 @@ import android.widget.TextView;
 import com.shin.imageclassifier.tflite.ClassifierWithModel;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class gallery extends AppCompatActivity {
     public static final int GALLERY_IMAGE_REQUEST_CODE = 1;
@@ -27,7 +38,7 @@ public class gallery extends AppCompatActivity {
         Button selectBtn = findViewById(R.id.selectBtn);
         selectBtn.setOnClickListener(v -> getImageFromGallery());
 
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView2);
         textView = findViewById(R.id.textView);
 
         cls = new ClassifierWithModel(this);
@@ -47,6 +58,32 @@ public class gallery extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode)
+        if (resultCode == Activity.RESULT_OK && requestCode ==GALLERY_IMAGE_REQUEST_CODE) {
+            if (data ==null) {
+                return;
+            }
+
+            Uri selectedImage = data.getData();
+            Bitmap bitmap = null;
+
+            try {
+                if(Build.VERSION.SDK_INT >= 29) {
+                    ImageDecoder.Source src = ImageDecoder.createSource(getContentResolver(), selectedImage);
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                }
+            } catch (IOException ioe) {
+                Log.e(TAG, "Failed to read Image", ioe);
+            }
+
+            if(bitmap != null) {
+                Pair<String, Float> output = cls.classify(bitmap);
+                String resultStr = String.format(Locale.ENGLISH, "class : %s, prob: %.2f%%",
+                        output.first, output.second * 100);
+
+                imageView.setImageBitmap(bitmap);
+                textView.setText(resultStr);
+
+            }
+        }
     }
 }
