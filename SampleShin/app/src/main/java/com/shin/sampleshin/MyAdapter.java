@@ -1,6 +1,7 @@
 package com.shin.sampleshin;
 
 import android.media.Image;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.List;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    private List<NewsData> mDataset;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -20,18 +25,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView TextView_title;
         public TextView TextView_content;
-        public ImageView ImageView_title;
+        public SimpleDraweeView ImageView_title;
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             TextView_title = view.findViewById(R.id.TextView_title);
             TextView_content = view.findViewById(R.id.TextVIew_content);
             ImageView_title = view.findViewById(R.id.ImageView_title);
+            ImageView_title = (SimpleDraweeView) view.findViewById(R.id.ImageView_title);
 
         }
 
         public TextView getTextView() {
-            return textView;
+            return TextView_title;
         }
     }
 
@@ -41,8 +47,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public MyAdapter(String[] myDataset) {
-        localDataSet = myDataset;
+    public MyAdapter(List<NewsData> myDataset) {
+        mDataset = myDataset;
+        Fresco.initialize(this);
     }
 
     // Create new views (invoked by the layout manager)
@@ -62,12 +69,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        NewsData news = mDataset.get(position);
+        viewHolder.TextView_title.setText(news.getTitle());
+        viewHolder.TextView_content.setText(news.getContent());
+
+        Uri uri = Uri.parse("https://raw.githubusercontent.com/facebook/fresco/main/docs/static/logo.png");
+
+        draweeView.setImageURI(uri);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return 0;
     }
 }
