@@ -1,5 +1,6 @@
 package com.shin.sampleshin;
 
+import android.content.Context;
 import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -47,9 +49,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public MyAdapter(List<NewsData> myDataset) {
+    public MyAdapter(List<NewsData> myDataset, Context context) {
         mDataset = myDataset;
-        Fresco.initialize(this);
+        Fresco.initialize(context);
     }
 
     // Create new views (invoked by the layout manager)
@@ -73,14 +75,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.TextView_title.setText(news.getTitle());
         viewHolder.TextView_content.setText(news.getContent());
 
-        Uri uri = Uri.parse("https://raw.githubusercontent.com/facebook/fresco/main/docs/static/logo.png");
+        Uri uri = Uri.parse(news.getUrlToImage());
 
-        draweeView.setImageURI(uri);
+        viewHolder.ImageView_title.setImageURI(uri);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return 0;
+        return mDataset != null ? 0 : mDataset.size();
     }
 }
