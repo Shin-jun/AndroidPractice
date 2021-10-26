@@ -1,26 +1,26 @@
 package com.example.instagram;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.instagram.utils.BottomNavigationViewHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
+public class ProfileActivity extends AppCompatActivity {
+    private static final String TAG = "ProfileActivity";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: starting.");
+        Log.d(TAG, "onCreate: started");
+
+        setupBottomNavigationView();
     }
 
-    // 하단네비게이션
     private void setupBottomNavigationView() {
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationView BottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavViewBar);
